@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .sampleClass {
+        float: left;
+    }
+    
+    @media only screen and (max-width: 750px) {
+        .sampleClass {
+            float: none;
+        }
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    section.zoom {
+        width: 100%;
+        height: 1000px;
+        position: relative;
+        overflow: hidden;
+        background: url(bg.jpg);
+        background-size: cover;
+    }
+    
+    section.zoom:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 200px;
+        z-index: 1000;
+        background: linear-gradient(transparent, #fff;
+        )
+    }
+    
+    section.zoom .layer1 {
+        position: absolute;
+        left: 40%;
+        width: 100%;
+        transform: translateX(-50%);
+    }
+    
+    section.zoom .layer2 {
+        position: absolute;
+        right: 0;
+        width: 100%;
+    }
+    
+    section.zoom .text {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        transform: translateY(50%);
+    }
+    
+    section.content {
+        padding: 100px;
+        box-sizing: border-box;
+        font-family: consolas;
+    }
+    
+    section.content h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 4em;
+    }
+    
+    section.content p {
+        font-size: 1.2em;
+    }
+    
+    @media only screen and (max-width: 750px) {
+        section.zoom {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: url(bg.jpg);
+            background-size: cover;
+        }
+        section.content {
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: consolas;
+        }
+    }
+</style>
+
+<body>
+    <section class="zoom">
+        <img src="text.png" alt="" class="text">
+        <img src="mountain1.png" alt="" class="layer1">
+        <img src="mountain2.png" alt="" class="layer2">
+    </section>
+    <section class="content">
+        <h2>Parallax </h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nulla doloremque consequatur repellat et ducimus dolores quos aliquam, reiciendis nisi, cum eveniet facilis laudantium iste consectetur architecto recusandae impedit optio. Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Harum sapiente temporibus quisquam inventore, dicta neque a sed id voluptates beatae libero ipsam minima saepe ipsum necessitatibus nemo facilis. Nemo, nesciunt? Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Excepturi sint quaerat sunt odit quibusdam iure hic aut dolorem dolor, tempore, voluptatem doloribus delectus commodi quasi molestias et adipisci consequuntur saepe.</p>
+
+        <br>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nulla doloremque consequatur repellat et ducimus dolores quos aliquam, reiciendis nisi, cum eveniet facilis laudantium iste consectetur architecto recusandae impedit optio. Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Harum sapiente temporibus quisquam inventore, dicta neque a sed id voluptates beatae libero ipsam minima saepe ipsum necessitatibus nemo facilis. Nemo, nesciunt? Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Excepturi sint quaerat sunt odit quibusdam iure hic aut dolorem dolor, tempore, voluptatem doloribus delectus commodi quasi molestias et adipisci consequuntur saepe.</p>
+        <br>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nulla doloremque consequatur repellat et ducimus dolores quos aliquam, reiciendis nisi, cum eveniet facilis laudantium iste consectetur architecto recusandae impedit optio. Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Harum sapiente temporibus quisquam inventore, dicta neque a sed id voluptates beatae libero ipsam minima saepe ipsum necessitatibus nemo facilis. Nemo, nesciunt? Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Excepturi sint quaerat sunt odit quibusdam iure hic aut dolorem dolor, tempore, voluptatem doloribus delectus commodi quasi molestias et adipisci consequuntur saepe.</p>
+    </section>
+    <span class="sampleClass"></span>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        // run test on initial page load
+        checkSize();
+
+        // run test on resize of the window
+        $(window).resize(checkSize);
+    });
+
+    //Function to the css rule
+    function checkSize() {
+
+    }
+
+
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        $('.layer1').css({
+            width: (100 + scroll / 5) + "%"
+        })
+        $('.layer2').css({
+            width: (100 + scroll / 5) + "%",
+            left: scroll / 50 + "%"
+        })
+        $('.layer2').css({
+            width: (100 + scroll / 5) + "%",
+            left: scroll / 50 + "%"
+        })
+        if ($(".sampleClass").css("float") == "none") {
+            $('.text').css({
+                top: (-scroll / 1.3) + "%"
+            })
+        } else {
+            $('.text').css({
+                top: -scroll / 20 + "%"
+            })
+        }
+    })
+</script>
+
+</html>
